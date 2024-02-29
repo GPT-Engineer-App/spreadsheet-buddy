@@ -28,9 +28,10 @@ const Index = () => {
 
     if (type === "currency" && isEditing) {
       return <Input type="number" defaultValue={value.toFixed(2)} onBlur={() => setEditingCell(null)} autoFocus />;
-    } else if (type === "date" && isEditing) {
-      return <Input type="date" defaultValue={value} onBlur={() => setEditingCell(null)} autoFocus />;
-    } else if (isEditing) {
+    } else if ((type === "date" || type === "text" || type === "number") && isEditing) {
+      const inputType = type === "date" ? "date" : type === "number" ? "number" : "text";
+      return <Input type={inputType} defaultValue={value} onBlur={() => setEditingCell(null)} autoFocus />;
+    } else {
       return <Input defaultValue={value} onBlur={() => setEditingCell(null)} autoFocus />;
     }
     switch (type) {
